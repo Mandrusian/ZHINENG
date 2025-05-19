@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         contentArea.innerHTML = `<iframe src="${url}" class="browser-iframe"></iframe>`;
     }
 
-    // On page load, embed Ecosia by default
-    embedSite('https://www.ecosia.org');
+    // On page load, embed Qwant by default
+    embedSite('https://www.qwant.com/?l=en');
 
     // Suggestion click
     document.querySelectorAll('.suggestion').forEach(suggestion => {
