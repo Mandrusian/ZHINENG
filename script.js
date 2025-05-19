@@ -2,6 +2,28 @@
 // Placeholder for browser mockup interactivity
 // You can add tab switching, group toggling, etc. here
 
+const API_KEY = 'AIzaSyC2ThDz5-KVi7wBFeXPR6EC-xWNBCEDfPA';
+const CX = 'c18f3250b0b5c45f0';
+
+function searchGoogle(query) {
+    fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CX}&q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+            const resultsContainer = document.querySelector('.search-results');
+            resultsContainer.innerHTML = '';
+            if (data.items) {
+                data.items.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'search-result';
+                    div.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><p>${item.snippet}</p>`;
+                    resultsContainer.appendChild(div);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+            }
+        });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Tab selection and current marker
     function setActiveTab(tab) {
@@ -90,22 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Address bar search
+    // Address bar search (Google Custom Search)
     const addressInput = document.querySelector('.address-bar input');
     addressInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             let query = this.value.trim();
             if (query) {
-                // If it's a URL, go directly; otherwise, search Google
-                let url = '';
-                if (/^https?:\/\//.test(query)) {
-                    url = query;
-                } else if (/\./.test(query) && !query.includes(' ')) {
-                    url = 'https://' + query;
-                } else {
-                    url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
-                }
-                embedSite(url);
+                searchGoogle(query);
             }
         }
     });

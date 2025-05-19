@@ -239,6 +239,26 @@ body {
     margin-top: 24px;
 }
 
+.search-results {
+    margin: 24px;
+    color: #fff;
+}
+.search-result {
+    margin-bottom: 18px;
+    padding: 12px;
+    background: #2c3a54;
+    border-radius: 8px;
+}
+.search-result a {
+    color: #8fa1c7;
+    font-size: 20px;
+    text-decoration: none;
+}
+.search-result p {
+    color: #cfd8e3;
+    margin: 6px 0 0 0;
+}
+
 @media (max-width: 900px) {
     .browser-container {
         flex-direction: column;
