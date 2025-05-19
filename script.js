@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         contentArea.innerHTML = `<iframe src="${url}" class="browser-iframe"></iframe>`;
     }
 
-    // On page load, embed Qwant by default
-    embedSite('https://www.qwant.com/?l=en');
+    // On page load, embed Google Custom Search by default
+    embedSite('https://cse.google.com/cse?cx=c18f3250b0b5c45f0');
 
     // Suggestion click
     document.querySelectorAll('.suggestion').forEach(suggestion => {
